@@ -17,6 +17,6 @@
 get_header(); ?>
 
 <?php 
-_e( 'A Static Homepage', 'wp-default' );
+_e( 'A Static Homepage', 'ph-job-list' );
 
 get_footer();

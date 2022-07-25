@@ -1,3 +1,3 @@
-<?php esc_html_e( 'Post', 'wp-default' ); ?>
+<?php esc_html_e( 'Post', 'ph-job-list' ); ?>
 <?php the_title();?>
 <?php the_excerpt(); ?>
