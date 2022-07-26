@@ -187,7 +187,7 @@ function create_subjects_hierarchical_taxonomy() {
   );    
  
 // Now register the taxonomy
-  register_taxonomy('employee_types',array('post', 'manila', 'bulacan'), array(
+  register_taxonomy('employee_types',array('post', 'manila', 'bulacan', 'pampanga'), array(
     'hierarchical' => true,
     'labels' => $labels,
     'show_ui' => true,
