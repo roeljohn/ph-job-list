@@ -103,10 +103,56 @@ function custom_post_type() {
               'show_in_rest' => true,
         
           );
-          
+            // Pampanga Label Post Type
+            $plabels = array(
+              'name'                => _x( 'Pampanga', 'Post Type General Name', 'ph-job-list' ),
+              'singular_name'       => _x( 'Pampanga', 'Post Type Singular Name', 'ph-job-list' ),
+              'menu_name'           => __( 'Pampanga', 'ph-job-list' ),
+              'parent_item_colon'   => __( 'Parent Pampanga', 'ph-job-list' ),
+              'all_items'           => __( 'All Pampanga', 'ph-job-list' ),
+              'view_item'           => __( 'View Pampanga', 'ph-job-list' ),
+              'add_new_item'        => __( 'Add New Pampanga', 'ph-job-list' ),
+              'add_new'             => __( 'Add New', 'ph-job-list' ),
+              'edit_item'           => __( 'Edit Pampanga', 'ph-job-list' ),
+              'update_item'         => __( 'Update Pampanga', 'ph-job-list' ),
+              'search_items'        => __( 'Search Pampanga', 'ph-job-list' ),
+              'not_found'           => __( 'Not Found', 'ph-job-list' ),
+              'not_found_in_trash'  => __( 'Not found in Trash', 'ph-job-list' ),
+          );
+            
+      // Pampanga Args
+            
+          $pargs = array(
+              'label'               => __( 'pampanga', 'ph-job-list' ),
+              'description'         => __( 'Pampanga Jobs', 'ph-job-list' ),
+              'labels'              => $blabels,
+              // Features this CPT supports in Post Editor
+              'supports'            => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'comments', 'revisions', 'custom-fields', ),
+              // You can associate this CPT with a taxonomy or custom taxonomy. 
+              'taxonomies' => array('post_tag','category'),
+              /* A hierarchical CPT is like Pages and can have
+              * Parent and child items. A non-hierarchical CPT
+              * is like Posts.
+              */
+              'hierarchical'        => false,
+              'public'              => true,
+              'show_ui'             => true,
+              'show_in_menu'        => true,
+              'show_in_nav_menus'   => true,
+              'show_in_admin_bar'   => true,
+              'menu_position'       => 5,
+              'can_export'          => true,
+              'has_archive'         => true,
+              'exclude_from_search' => false,
+              'publicly_queryable'  => true,
+              'capability_type'     => 'post',
+              'show_in_rest' => true,
+        
+          );
         // Registering your Custom Post Type
         register_post_type( 'manila', $args );
         register_post_type( 'bulacan', $bargs );
+        register_post_type( 'pampanga', $pargs );
       
     }
       
@@ -141,7 +187,7 @@ function create_subjects_hierarchical_taxonomy() {
   );    
  
 // Now register the taxonomy
-  register_taxonomy('employee_types',array('post', 'manila', 'bulacan'), array(
+  register_taxonomy('employee_types',array('post', 'manila', 'bulacan', 'pampanga'), array(
     'hierarchical' => true,
     'labels' => $labels,
     'show_ui' => true,
