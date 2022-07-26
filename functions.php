@@ -56,9 +56,57 @@ function custom_post_type() {
             'show_in_rest' => true,
       
         );
+
+            // Bulacan Label Post Type
+            $blabels = array(
+              'name'                => _x( 'Bulacan', 'Post Type General Name', 'ph-job-list' ),
+              'singular_name'       => _x( 'Bulacan', 'Post Type Singular Name', 'ph-job-list' ),
+              'menu_name'           => __( 'Bulacan', 'ph-job-list' ),
+              'parent_item_colon'   => __( 'Parent Bulacan', 'ph-job-list' ),
+              'all_items'           => __( 'All Bulacan', 'ph-job-list' ),
+              'view_item'           => __( 'View Bulacan', 'ph-job-list' ),
+              'add_new_item'        => __( 'Add New Bulacan', 'ph-job-list' ),
+              'add_new'             => __( 'Add New', 'ph-job-list' ),
+              'edit_item'           => __( 'Edit Bulacan', 'ph-job-list' ),
+              'update_item'         => __( 'Update Bulacan', 'ph-job-list' ),
+              'search_items'        => __( 'Search Bulacan', 'ph-job-list' ),
+              'not_found'           => __( 'Not Found', 'ph-job-list' ),
+              'not_found_in_trash'  => __( 'Not found in Trash', 'ph-job-list' ),
+          );
+            
+      // Bulacan Args
+            
+          $bargs = array(
+              'label'               => __( 'bulacan', 'ph-job-list' ),
+              'description'         => __( 'Bulacan Jobs', 'ph-job-list' ),
+              'labels'              => $blabels,
+              // Features this CPT supports in Post Editor
+              'supports'            => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'comments', 'revisions', 'custom-fields', ),
+              // You can associate this CPT with a taxonomy or custom taxonomy. 
+              'taxonomies' => array('post_tag','category'),
+              /* A hierarchical CPT is like Pages and can have
+              * Parent and child items. A non-hierarchical CPT
+              * is like Posts.
+              */
+              'hierarchical'        => false,
+              'public'              => true,
+              'show_ui'             => true,
+              'show_in_menu'        => true,
+              'show_in_nav_menus'   => true,
+              'show_in_admin_bar'   => true,
+              'menu_position'       => 5,
+              'can_export'          => true,
+              'has_archive'         => true,
+              'exclude_from_search' => false,
+              'publicly_queryable'  => true,
+              'capability_type'     => 'post',
+              'show_in_rest' => true,
+        
+          );
           
         // Registering your Custom Post Type
         register_post_type( 'manila', $args );
+        register_post_type( 'bulacan', $bargs );
       
     }
       
@@ -93,7 +141,7 @@ function create_subjects_hierarchical_taxonomy() {
   );    
  
 // Now register the taxonomy
-  register_taxonomy('employee_types',array('post', 'manila'), array(
+  register_taxonomy('employee_types',array('post', 'manila', 'bulacan'), array(
     'hierarchical' => true,
     'labels' => $labels,
     'show_ui' => true,
