@@ -125,7 +125,7 @@ function custom_post_type() {
           $pargs = array(
               'label'               => __( 'pampanga', 'ph-job-list' ),
               'description'         => __( 'Pampanga Jobs', 'ph-job-list' ),
-              'labels'              => $blabels,
+              'labels'              => $plabels,
               // Features this CPT supports in Post Editor
               'supports'            => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'comments', 'revisions', 'custom-fields', ),
               // You can associate this CPT with a taxonomy or custom taxonomy. 
