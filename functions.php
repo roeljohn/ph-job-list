@@ -198,3 +198,40 @@ function create_subjects_hierarchical_taxonomy() {
   ));
  
 }
+add_action( 'wp_login_failed', 'my_front_end_login_fail' );  // hook failed login
+
+function my_front_end_login_fail( $username ) {
+   $referrer = $_SERVER['HTTP_REFERER'];  // where did the post submission come from?
+   // if there's a valid referrer, and it's not the default log-in screen
+   if ( !empty($referrer) && !strstr($referrer,'wp-login') && !strstr($referrer,'wp-admin') ) {
+      wp_redirect( $referrer . '?login=failed' );  // let's append some information (login=failed) to the URL for the theme to use
+      exit;
+   }
+}
+// Login Shortcode
+function wpdocs_log_me_shortcode_fn() {
+ 
+  $args = array(
+    'echo'           => true,
+    'remember'       => true,
+    //'redirect'       => ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'],
+    //'redirect' => get_permalink(),
+    'form_id'        => 'loginform',
+    'id_username'    => 'user_login',
+    'id_password'    => 'user_pass',
+    'id_remember'    => 'rememberme',
+    'id_submit'      => 'wp-submit',
+    'label_username' => __( 'Username or Email Address' ),
+    'label_password' => __( 'Password' ),
+    'label_remember' => __( 'Remember Me' ),
+    'label_log_in'   => __( 'Log In' ),
+    'value_username' => '',
+    'value_remember' => false
+);
+ 
+  return wp_login_form( $args );
+ 
+}
+add_shortcode( 'wpdocs_log_me', 'wpdocs_log_me_shortcode_fn' );
+
+
