@@ -18,5 +18,6 @@ get_header(); ?>
 
 <?php 
 _e( 'A Static Homepage', 'ph-job-list' );
+echo do_shortcode('[wpdocs_log_me]');
 
 get_footer();
