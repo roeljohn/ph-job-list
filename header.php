@@ -22,3 +22,4 @@
       <span class="fs-4">Starter template</span>
     </a>
   </header>
+  <main>
