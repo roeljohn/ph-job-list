@@ -14,7 +14,7 @@ get_header();
 while ( have_posts() ) :
 	the_post();
 
-	get_template_part( 'template-parts/content/content' );
+	get_template_part( 'template-parts/content/content-post' );
 	
     wp_list_categories('title_li=');
     wp_tag_cloud();
