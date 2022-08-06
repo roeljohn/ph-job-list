@@ -6,16 +6,23 @@
 
       <article class="blog-post">
         <p class="blog-post-meta"><?php the_date(); ?> by <a href="#"><?php the_author(); ?></a></p>
-        <p>This is some additional paragraph placeholder content. It's a slightly shorter version of the other highly repetitive body text used throughout.</p>
+        <?php the_content(); ?>
       </article>
 
-     
+
 
 
       <nav class="blog-pagination" aria-label="Pagination">
-        <a class="btn btn-outline-primary rounded-pill" href="#">Older</a>
-        <a class="btn btn-outline-secondary rounded-pill disabled">Newer</a>
+      <?php 		the_post_navigation(
+			array(
+				/* translators: %s: Parent post link. */
+				'prev_text' => sprintf( __( 'Older', 'ph-job-list' ), '%title' ),
+        'next_text' => sprintf( __( 'Newer', 'ph-job-list' ), '%title' )
+			)
+		);
+    ?>
       </nav>
+      
 
     </div>
   <?php get_sidebar(); ?>

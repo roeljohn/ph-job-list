@@ -274,3 +274,12 @@ function wpdocs_log_me_shortcode_fn() {
 add_shortcode( 'wpdocs_log_me', 'wpdocs_log_me_shortcode_fn' );
 
 
+/** Add class in next/previous link function */
+
+function post_link_attributes($output) {
+  $code = 'class="btn btn-outline-primary rounded-pill"';
+  return str_replace('<a href=', '<a '.$code.' href=', $output);
+}
+
+add_filter('next_post_link', 'post_link_attributes');
+add_filter('previous_post_link', 'post_link_attributes');
