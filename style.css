@@ -7,3 +7,10 @@ Description: This theme is created to re-use in your future project.
 Version: 1.0.0
 Text Domain: ph-job-list
 */
+
+.nav-previous{
+    float: left;
+}
+.nav-next{
+    float: right;
+}
