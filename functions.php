@@ -235,6 +235,31 @@ function create_subjects_hierarchical_taxonomy() {
     'query_var' => true,
     'rewrite' => array( 'slug' => 'employee_type' ),
   ));
+
+  $labels = array(
+    'name' => _x( 'Bulacan Province', 'taxonomy general name' ),
+    'singular_name' => _x( 'Bulacan Province', 'taxonomy singular name' ),
+    'search_items' =>  __( 'Search Bulacan Province' ),
+    'all_items' => __( 'All Bulacan Province' ),
+    'parent_item' => __( 'Parent Bulacan Province' ),
+    'parent_item_colon' => __( 'Parent Bulacan Province:' ),
+    'edit_item' => __( 'Edit Bulacan Province' ), 
+    'update_item' => __( 'Update Bulacan Province' ),
+    'add_new_item' => __( 'Add New Bulacan Province' ),
+    'new_item_name' => __( 'New Bulacan Province' ),
+    'menu_name' => __( 'Bulacan Province' ),
+  );    
+ 
+// Now register the taxonomy
+  register_taxonomy('bulacan_provinces',array('bulacan'), array(
+    'hierarchical' => true,
+    'labels' => $labels,
+    'show_ui' => true,
+    'show_in_rest' => true,
+    'show_admin_column' => true,
+    'query_var' => true,
+    'rewrite' => array( 'slug' => 'bulacan_province' ),
+  ));
  
 }
 add_action( 'wp_login_failed', 'my_front_end_login_fail' );  // hook failed login
