@@ -237,28 +237,28 @@ function create_subjects_hierarchical_taxonomy() {
   ));
 
   $labels = array(
-    'name' => _x( 'Bulacan Province', 'taxonomy general name' ),
-    'singular_name' => _x( 'Bulacan Province', 'taxonomy singular name' ),
-    'search_items' =>  __( 'Search Bulacan Province' ),
-    'all_items' => __( 'All Bulacan Province' ),
-    'parent_item' => __( 'Parent Bulacan Province' ),
-    'parent_item_colon' => __( 'Parent Bulacan Province:' ),
-    'edit_item' => __( 'Edit Bulacan Province' ), 
-    'update_item' => __( 'Update Bulacan Province' ),
-    'add_new_item' => __( 'Add New Bulacan Province' ),
-    'new_item_name' => __( 'New Bulacan Province' ),
-    'menu_name' => __( 'Bulacan Province' ),
+    'name' => _x( 'Bulacan Cities', 'taxonomy general name' ),
+    'singular_name' => _x( 'Bulacan City', 'taxonomy singular name' ),
+    'search_items' =>  __( 'Search Bulacan City' ),
+    'all_items' => __( 'All Bulacan Cities' ),
+    'parent_item' => __( 'Parent Bulacan City' ),
+    'parent_item_colon' => __( 'Parent Bulacan City:' ),
+    'edit_item' => __( 'Edit Bulacan City' ), 
+    'update_item' => __( 'Update Bulacan City' ),
+    'add_new_item' => __( 'Add New Bulacan City' ),
+    'new_item_name' => __( 'New Bulacan City' ),
+    'menu_name' => __( 'Bulacan Cities' ),
   );    
  
 // Now register the taxonomy
-  register_taxonomy('bulacan_provinces',array('bulacan'), array(
+  register_taxonomy('bulacan_cities',array('bulacan'), array(
     'hierarchical' => true,
     'labels' => $labels,
     'show_ui' => true,
     'show_in_rest' => true,
     'show_admin_column' => true,
     'query_var' => true,
-    'rewrite' => array( 'slug' => 'bulacan_province' ),
+    'rewrite' => array( 'slug' => 'bulacan_cities' ),
   ));
  
 }
