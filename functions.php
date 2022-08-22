@@ -236,6 +236,7 @@ function create_subjects_hierarchical_taxonomy() {
     'rewrite' => array( 'slug' => 'employee_type' ),
   ));
 
+  // Bulacan Cities Taxonomy
   $labels = array(
     'name' => _x( 'Bulacan Cities', 'taxonomy general name' ),
     'singular_name' => _x( 'Bulacan City', 'taxonomy singular name' ),
@@ -248,9 +249,7 @@ function create_subjects_hierarchical_taxonomy() {
     'add_new_item' => __( 'Add New Bulacan City' ),
     'new_item_name' => __( 'New Bulacan City' ),
     'menu_name' => __( 'Bulacan Cities' ),
-  );    
- 
-// Now register the taxonomy
+  );   
   register_taxonomy('bulacan_cities',array('bulacan'), array(
     'hierarchical' => true,
     'labels' => $labels,
@@ -260,7 +259,29 @@ function create_subjects_hierarchical_taxonomy() {
     'query_var' => true,
     'rewrite' => array( 'slug' => 'bulacan_cities' ),
   ));
- 
+   // Pampanga Cities Taxonomy
+   $labels = array(
+    'name' => _x( 'Pampanga Cities', 'taxonomy general name' ),
+    'singular_name' => _x( 'Pampanga City', 'taxonomy singular name' ),
+    'search_items' =>  __( 'Search Pampanga City' ),
+    'all_items' => __( 'All Pampanga Cities' ),
+    'parent_item' => __( 'Parent Pampanga City' ),
+    'parent_item_colon' => __( 'Parent Pampanga City:' ),
+    'edit_item' => __( 'Edit Pampanga City' ), 
+    'update_item' => __( 'Update Pampanga City' ),
+    'add_new_item' => __( 'Add New Pampanga City' ),
+    'new_item_name' => __( 'New Pampanga City' ),
+    'menu_name' => __( 'Pampanga Cities' ),
+  );   
+  register_taxonomy('pampanga_cities',array('pampanga'), array(
+    'hierarchical' => true,
+    'labels' => $labels,
+    'show_ui' => true,
+    'show_in_rest' => true,
+    'show_admin_column' => true,
+    'query_var' => true,
+    'rewrite' => array( 'slug' => 'pampanga_cities' ),
+  ));
 }
 add_action( 'wp_login_failed', 'my_front_end_login_fail' );  // hook failed login
 
