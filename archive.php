@@ -1,39 +1,51 @@
-<?php
-/**
- * This file is for
- * author.php
- * category.php
- * taxonomy.php
- * date.php
- * tag.php
- * archive.php
- * Rules
- * If category.php does not exist, WordPress will look for a generic archive template, archive.php.
- */
-
-get_header();
-
-if ( have_posts() ) { ?>
-	<?php
-		the_archive_title( '<h1 class="page-title">', '</h1>' );
+<?php get_header(); ?>
+<?php 
+ $queried_object = get_queried_object();
+    $paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
+    $custom_args = array(
+		'tax_query' => array(
+			array(
+				'taxonomy' => $queried_object->taxonomy,
+				'field'    => 'slug',
+				'terms'    => $queried_object->slug,
+			),
+		),
+        'posts_per_page' => 1,
+        'paged' => $paged
+    );
+    $custom_query = new WP_Query( $custom_args ); 
+?>
+<?php the_archive_title( '<h1 class="page-title">', '</h1>' );
 	?>
 
-	<?php
-		while ( have_posts() ) {
-			the_post();
 
-			/*
-			* Include the Post-Format-specific template for the content.
-			* If you want to override this in a child theme, then include a file
-			* called content-___.php (where ___ is the Post Format name) and that will be used instead.
-			*/
-			get_template_part( 'template-parts/content/content-archive');
-		}
+<div class="row g-5">
+    <div class="col-md-8">
 
-		// Previous/next page navigation.
-} else {
-	// If no content, include the "No posts found" template.
-	get_template_part( 'template-parts/content/content-none' );
-}
+<div class="list-group mb-3">
 
-get_footer();
+<?php if( $custom_query->have_posts() ) : while( $custom_query->have_posts() ) : $custom_query->the_post(); ?>
+<?php
+get_template_part( 'template-parts/archive/post', null );
+    ?>
+<?php endwhile; endif; wp_reset_postdata(); ?>
+</div>
+<?php
+    if (function_exists('job_custom_pagination')) {
+        job_custom_pagination($custom_query->max_num_pages,"",$paged);
+    }
+?>
+      <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group" role="group" aria-label="First group">
+            <button type="button" class="btn btn-outline-secondary">1</button>
+            <button type="button" class="btn btn-outline-secondary">2</button>
+            <button type="button" class="btn btn-outline-secondary">3</button>
+            <button type="button" class="btn btn-outline-secondary">4</button>
+        </div>
+        </div>
+
+    </div>
+
+    <?php get_sidebar(); ?>
+  </div>
+  <?php get_footer(); ?>

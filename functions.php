@@ -250,14 +250,14 @@ function create_subjects_hierarchical_taxonomy() {
     'new_item_name' => __( 'New Bulacan City' ),
     'menu_name' => __( 'Bulacan Cities' ),
   );   
-  register_taxonomy('bulacan_cities',array('bulacan'), array(
+  register_taxonomy('bulacan-cities',array('bulacan'), array(
     'hierarchical' => true,
     'labels' => $labels,
     'show_ui' => true,
     'show_in_rest' => true,
     'show_admin_column' => true,
     'query_var' => true,
-    'rewrite' => array( 'slug' => 'bulacan_cities' ),
+    'rewrite' => array( 'slug' => 'bulacan-cities' ),
   ));
    // Pampanga Cities Taxonomy
    $labels = array(
@@ -273,14 +273,14 @@ function create_subjects_hierarchical_taxonomy() {
     'new_item_name' => __( 'New Pampanga City' ),
     'menu_name' => __( 'Pampanga Cities' ),
   );   
-  register_taxonomy('pampanga_cities',array('pampanga'), array(
+  register_taxonomy('pampanga-cities',array('pampanga'), array(
     'hierarchical' => true,
     'labels' => $labels,
     'show_ui' => true,
     'show_in_rest' => true,
     'show_admin_column' => true,
     'query_var' => true,
-    'rewrite' => array( 'slug' => 'pampanga_cities' ),
+    'rewrite' => array( 'slug' => 'pampanga-cities' ),
   ));
 }
 add_action( 'wp_login_failed', 'my_front_end_login_fail' );  // hook failed login
@@ -329,3 +329,56 @@ function post_link_attributes($output) {
 
 add_filter('next_post_link', 'post_link_attributes');
 add_filter('previous_post_link', 'post_link_attributes');
+
+// PAGINATION
+function job_custom_pagination($numpages = '', $pagerange = '', $paged='') {
+  if (empty($pagerange)) {
+      $pagerange = 2;
+  }
+  /**
+   * This first part of our function is a fallback
+   * for custom pagination inside a regular loop that
+   * uses the global $paged and global $wp_query variables.
+   * 
+   * It's good because we can now override default pagination
+   * in our theme, and use this function in default queries
+   * and custom queries.
+   */
+  global $paged;
+  if (empty($paged)) {
+      $paged = 1;
+  }
+  if ($numpages == '') {
+      global $wp_query;
+      $numpages = $wp_query->max_num_pages;
+      if(!$numpages) {
+              $numpages = 1;
+      }
+  }
+  /** 
+   * We construct the pagination arguments to enter into our paginate_links
+   * function. 
+   */
+  $pagination_args = array(
+      'base'            => get_pagenum_link(1) . '%_%',
+      'format'          => 'page/%#%',
+      'total'           => $numpages,
+      'current'         => $paged,
+      'show_all'        => False,
+      'end_size'        => 1,
+      'mid_size'        => $pagerange,
+      'prev_next'       => True,
+      'prev_text'       => __('&laquo;'),
+      'next_text'       => __('&raquo;'),
+      'type'            => 'plain',
+      'add_args'        => false,
+      'add_fragment'    => ''
+  );
+  $paginate_links = paginate_links($pagination_args);
+  if ($paginate_links) {
+      echo "<div class='custom-pagination'>";
+          echo "<span class='page-numbers page-num'>Page " . $paged . " of " . $numpages . "</span> ";
+          echo "<span class='float-end'>" . $paginate_links . "</span>";
+      echo "</div>";
+  }
+}
