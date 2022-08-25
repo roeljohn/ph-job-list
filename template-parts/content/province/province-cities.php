@@ -1,6 +1,6 @@
 <?php
     $terms = get_terms([
-        'taxonomy' => ''. $args .'_cities',
+        'taxonomy' => ''. $args .'-cities',
         'hide_empty' => false,
     ]);
 ?>
