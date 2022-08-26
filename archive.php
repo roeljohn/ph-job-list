@@ -2,15 +2,17 @@
 <?php 
  $queried_object = get_queried_object();
     $paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
+    $year   = get_query_var('year');
+    $monthnum = get_query_var('monthnum');
     $custom_args = array(
-		'tax_query' => array(
-			array(
-				'taxonomy' => $queried_object->taxonomy,
-				'field'    => 'slug',
-				'terms'    => $queried_object->slug,
-			),
-		),
-        'posts_per_page' => 1,
+        'date_query' => array(
+            array(
+                'year'  => $year,
+                'month' => $monthnum
+            ),
+        ),
+        'post_type' => array( 'bulacan', 'manila', 'pampanga' ),
+        'posts_per_page' => 10,
         'paged' => $paged
     );
     $custom_query = new WP_Query( $custom_args ); 
@@ -35,14 +37,6 @@ get_template_part( 'template-parts/archive/post', null );
         job_custom_pagination($custom_query->max_num_pages,"",$paged);
     }
 ?>
-      <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
-        <div class="btn-group" role="group" aria-label="First group">
-            <button type="button" class="btn btn-outline-secondary">1</button>
-            <button type="button" class="btn btn-outline-secondary">2</button>
-            <button type="button" class="btn btn-outline-secondary">3</button>
-            <button type="button" class="btn btn-outline-secondary">4</button>
-        </div>
-        </div>
 
     </div>
 
