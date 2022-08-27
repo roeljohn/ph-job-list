@@ -16,9 +16,6 @@ while ( have_posts() ) :
 
 	get_template_part( 'template-parts/content/content-post' );
 	
-    wp_list_categories('title_li=');
-    wp_tag_cloud();
-    wp_get_archives( array( 'type' => 'daily', 'limit' => 14, 'show_post_count' => 'true' ) );
 	if ( is_attachment() ) {
 		// Parent post navigation.
 		the_post_navigation(

@@ -346,7 +346,7 @@ function job_custom_pagination($numpages = '', $pagerange = '', $paged='') {
    */
   global $paged;
   if (empty($paged)) {
-      $paged = 1;
+      $paged = 2;
   }
   if ($numpages == '') {
       global $wp_query;
@@ -382,3 +382,20 @@ function job_custom_pagination($numpages = '', $pagerange = '', $paged='') {
       echo "</div>";
   }
 }
+
+function wpb_widgets_init() {
+ 
+  register_sidebar( array(
+      'name' => __( 'Sidebar', 'wpb' ),
+      'id' => 'sidebar',
+      'description' => __( 'The main sidebar appears on the right on each page except the front page template', 'ph-job-list' ),
+      'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+      'after_widget' => '</aside>',
+      'before_title' => '<h3 class="widget-title">',
+      'after_title' => '</h3>',
+  ) );
+  /** Add another one */
+}
+
+add_action( 'widgets_init', 'wpb_widgets_init' );
+

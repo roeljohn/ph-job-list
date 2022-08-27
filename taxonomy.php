@@ -2,10 +2,14 @@
 <?php 
  $queried_object = get_queried_object();
     $paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
-	$category = get_category( get_query_var( 'cat' ) );
     $custom_args = array(
-		'cat' => $category->cat_ID,
-		'post_type' => array( 'bulacan', 'manila', 'pampanga' ),
+		'tax_query' => array(
+			array(
+				'taxonomy' => $queried_object->taxonomy,
+				'field'    => 'slug',
+				'terms'    => $queried_object->slug,
+			),
+		),
         'posts_per_page' => 10,
         'paged' => $paged
     );
@@ -31,6 +35,7 @@ get_template_part( 'template-parts/archive/post', null );
         job_custom_pagination($custom_query->max_num_pages,"",$paged);
     }
 ?>
+
     </div>
 
     <?php get_sidebar(); ?>
