@@ -1,12 +1,12 @@
 <?php get_header(); ?>
 <?php 
- $queried_object = get_queried_object();
     $paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
+    $default_posts_per_page = get_option( 'posts_per_page' );
 	$category = get_category( get_query_var( 'cat' ) );
     $custom_args = array(
 		'cat' => $category->cat_ID,
 		'post_type' => array( 'bulacan', 'manila', 'pampanga' ),
-        'posts_per_page' => 10,
+        'posts_per_page' => $default_posts_per_page,
         'paged' => $paged
     );
     $custom_query = new WP_Query( $custom_args ); 
