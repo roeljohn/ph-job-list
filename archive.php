@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 <?php 
- $queried_object = get_queried_object();
+    $queried_object = get_queried_object();
     $paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
     $year   = get_query_var('year');
     $monthnum = get_query_var('monthnum');

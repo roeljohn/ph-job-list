@@ -330,6 +330,20 @@ function post_link_attributes($output) {
 add_filter('next_post_link', 'post_link_attributes');
 add_filter('previous_post_link', 'post_link_attributes');
 
+add_filter( 'pre_get_posts', 'add_custom_type_to_tag_archive' );
+
+function add_custom_type_to_tag_archive( $query )
+{
+    if ( ! is_main_query() or ! is_tag() )
+        return $query;
+
+    $query->set( 'post_type', array ( 'manila', 'bulacan', 'pampanga' ) );
+    $query->set( 'posts_per_page', 10 );
+
+    return $query;
+}
+
+
 // PAGINATION
 function job_custom_pagination($numpages = '', $pagerange = '', $paged='') {
   if (empty($pagerange)) {
@@ -399,3 +413,12 @@ function wpb_widgets_init() {
 
 add_action( 'widgets_init', 'wpb_widgets_init' );
 
+function namespace_add_custom_types( $query ) {
+  if( is_category() || is_tag() ) {
+    $query->set( 'post_type', array(
+              'bulacan', 'manila', 'pampanga'
+            ));
+    return $query;
+   }
+}
+add_filter( 'pre_get_posts', 'namespace_add_custom_types' );
