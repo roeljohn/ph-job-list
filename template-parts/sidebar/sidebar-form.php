@@ -1,27 +1,32 @@
-<form action="<?php echo esc_url( home_url( '/filter/?test=test' ) ); ?>" method="GET">
+<form action="" method="GET">
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Search</label>
     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
   </div>
     <h5>Employee Type</h5>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="contractcheck">
-        <label class="form-check-label" for="contractcheck">
-            Contract
-        </label>
+    <?php 
+    $terms = get_terms( 'employee_types' );
+    if ( ! is_wp_error( $terms ) ){
+        foreach ( $terms as $term ) {
+           get_template_part( 'template-parts/forms/form', 'employee_type', $term );
+        }
+    }
+    ?>
+    <select class="form-select mb-3" name="province"> 
+    <?php
+        $post_types = get_post_types( array( 'public' => true ), 'names', 'and' );
+        // remove attachment from the list
+        unset( $post_types['attachment'] );
+        unset( $post_types['post'] );
+        unset( $post_types['page'] );
+        foreach ( $post_types  as $post_type ) {
+            get_template_part( 'template-parts/forms/form', 'province', $post_type );
+        }
+    ?>
+    </select>
+    <div class="col-12">
+        <input class="btn btn-primary float-end" type="submit" value="Submit" />
     </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="fulltimecheck">
-        <label class="form-check-label" for="fulltimecheck">
-            Full-time
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="parttimecheck">
-        <label class="form-check-label" for="parttimecheck">
-            Part-time
-        </label>
-    </div>
-    <button type="submit" class="btn btn-primary float-end">Submit</button>
+    
 </form>

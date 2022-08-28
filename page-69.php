@@ -1,28 +1,37 @@
+<?php get_header(); ?>
+<?php 
+    $paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
+    $default_posts_per_page = get_option( 'posts_per_page' );
+	$category = get_category( get_query_var( 'cat' ) );
+    $custom_args = array(
+		'post_type' => array( 'bulacan', 'manila', 'pampanga' ),
+        'posts_per_page' => $default_posts_per_page,
+        'paged' => $paged
+    );
+    $custom_query = new WP_Query( $custom_args ); 
+?>
+<?php the_archive_title( '<h1 class="page-title">', '</h1>' );
+	?>
 
-<form action="<?php echo esc_url( home_url( '/filter?test=test' ) ); ?>" method="get">
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Search</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+
+<div class="row g-5">
+    <div class="col-md-8">
+
+<div class="list-group mb-3">
+
+<?php if( $custom_query->have_posts() ) : while( $custom_query->have_posts() ) : $custom_query->the_post(); ?>
+<?php
+get_template_part( 'template-parts/archive/post', null );
+    ?>
+<?php endwhile; endif; wp_reset_postdata(); ?>
+</div>
+<?php
+    if (function_exists('job_custom_pagination')) {
+        job_custom_pagination($custom_query->max_num_pages,"",$paged);
+    }
+?>
+    </div>
+
+    <?php get_sidebar(); ?>
   </div>
-    <h5>Employee Type</h5>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="contractcheck">
-        <label class="form-check-label" for="contractcheck">
-            Contract
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="fulltimecheck">
-        <label class="form-check-label" for="fulltimecheck">
-            Full-time
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="parttimecheck">
-        <label class="form-check-label" for="parttimecheck">
-            Part-time
-        </label>
-    </div>
-    <button type="submit" class="btn btn-primary float-end">Submit</button>
-</form>
+  <?php get_footer(); ?>

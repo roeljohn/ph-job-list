@@ -373,6 +373,10 @@ function job_custom_pagination($numpages = '', $pagerange = '', $paged='') {
    * We construct the pagination arguments to enter into our paginate_links
    * function. 
    */
+  
+  // if ($paged < $pagerange){
+  //   $page_num = get_pagenum_link($paged + 1);
+  // } 
   $pagination_args = array(
       'base'            => get_pagenum_link(1) . '%_%',
       'format'          => 'page/%#%',
