@@ -1,4 +1,4 @@
-<form action="" method="GET">
+<form action="<?php echo esc_url( home_url( '/filter' ) ); ?>" method="GET">
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Search</label>
     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">

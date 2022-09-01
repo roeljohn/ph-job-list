@@ -1,2 +1,2 @@
 
-<option><?php echo $args; ?></option> 
+<option value="<?php echo $args; ?>"><?php echo $args; ?></option>
