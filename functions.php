@@ -374,12 +374,9 @@ function job_custom_pagination($numpages = '', $pagerange = '', $paged='') {
    * function. 
    */
   
-  // if ($paged < $pagerange){
-  //   $page_num = get_pagenum_link($paged + 1);
-  // } 
   $pagination_args = array(
-      'base'            => get_pagenum_link(1) . '%_%',
-      'format'          => 'page/%#%',
+      'base' => str_replace( $pagerange, '%#%', esc_url( get_pagenum_link( $pagerange ) ) ),
+      'format'          => '?paged=%#%',
       'total'           => $numpages,
       'current'         => $paged,
       'show_all'        => False,

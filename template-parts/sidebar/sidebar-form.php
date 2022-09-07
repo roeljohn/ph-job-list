@@ -1,4 +1,4 @@
-<form action="" method="GET">
+<form role="search" action="<?php echo esc_url( home_url( '/filter' ) ); ?>" method="GET">
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Search</label>
     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -13,7 +13,7 @@
         }
     }
     ?>
-    <select class="form-select mb-3" name="province"> 
+    <select class="form-select mb-3" name="province">
     <?php
         $post_types = get_post_types( array( 'public' => true ), 'names', 'and' );
         // remove attachment from the list
