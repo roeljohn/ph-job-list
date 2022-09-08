@@ -15,8 +15,9 @@
  */
 
 get_header(); ?>
-
+<?php get_search_form(); ?>
 <div class="row row-cols-1 row-cols-md-3 g-4">
+    
     <?php
 $post_types = get_post_types( array( 'public' => true ), 'names', 'and' );
 // remove attachment from the list
