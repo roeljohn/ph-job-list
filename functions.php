@@ -3,6 +3,8 @@
  * The functions.php file behaves like a WordPress plugin, adding features and functionality to a 
  * WordPress site. You can use it to call WordPress functions and to define your own functions.
  */
+require_once( __DIR__ . '/functions/global.php');
+
 add_action( 'after_setup_theme', 'register_my_menu' );
 
 function register_my_menu() {
