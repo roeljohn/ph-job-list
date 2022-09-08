@@ -19,6 +19,6 @@ $current_url = add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
 ?>
 
 <form role="search" <?php echo $wp_default_aria_label; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped above. ?> method="get" class="search-form d-flex mb-3" action="<?php echo $current_url;?>">
-	<input type="search" id="<?php echo esc_attr( $wp_default_unique_id ); ?>" class="search-field p-2 w-100 rounded-0 border" value="<?php echo get_search_query(); ?>" name="s" />
+	<input type="search" id="<?php echo esc_attr( $wp_default_unique_id ); ?>" class="search-field p-2 w-100 rounded-0 border" placeholder="Search Job Title" value="<?php echo get_search_query(); ?>" name="s" />
 	<input type="submit" class="search-submit p-2 flex-shrink-1 btn btn-primary rounded-0" value="<?php echo esc_attr_x( 'Search', 'submit button', 'ph-job-list' ); ?>" />
 </form>
