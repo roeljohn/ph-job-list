@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 <div class="row g-5">
   <div class="col-md-8">
-    <?php the_archive_title( '<h1 class="page-title">', '</h1>' ); ?>
+    <h1> Search: <?php echo get_search_query(); ?></h1>
     <?php if ( have_posts() ) : ?>
       <div class="list-group mb-3">
       <?php while ( have_posts() ) : the_post(); ?>
