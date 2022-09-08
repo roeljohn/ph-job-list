@@ -7,10 +7,12 @@
  */
 
 ?>
-    <hr class="col-3 col-md-2 mb-5">
+
+</main>
+<hr class="col-3 col-md-2 mb-5" />
 
 <div class="row g-5">
-  <div class="col-md-6">
+  <div class="col-md-8">
     <h2>Starter projects</h2>
     <p>Ready to beyond the starter template? Check out these open source projects that you can quickly duplicate to a new GitHub repository.</p>
     <ul class="icon-list ps-0">
@@ -19,7 +21,7 @@
     </ul>
   </div>
 
-  <div class="col-md-6">
+  <div class="col-md-4">
     <h2>Guides</h2>
     <p>Read more detailed instructions and documentation on using or contributing to Bootstrap.</p>
     <ul class="icon-list ps-0">
@@ -31,7 +33,6 @@
     </ul>
   </div>
 </div>
-</main>
   <footer class="pt-5 my-5 text-muted border-top">
     Created by the Bootstrap team &middot; &copy; 2022
   </footer>
