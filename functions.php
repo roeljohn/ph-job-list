@@ -4,6 +4,7 @@
  * WordPress site. You can use it to call WordPress functions and to define your own functions.
  */
 require_once( __DIR__ . '/functions/global.php');
+require_once( __DIR__ . '/functions/custom.php');
 
 add_action( 'after_setup_theme', 'register_my_menu' );
 

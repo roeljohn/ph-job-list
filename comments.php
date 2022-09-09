@@ -76,6 +76,8 @@ $wp_default_comment_count = get_comments_number();
 			'title_reply'        => esc_html__( 'Leave a comment', 'ph-job-list' ),
 			'title_reply_before' => '<h2 id="reply-title" class="comment-reply-title">',
 			'title_reply_after'  => '</h2>',
+			'comment_field' => '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun' ) . '</label><br /><textarea id="comment" class="form-control" name="comment" aria-required="true"></textarea></p>',
+			'submit_button' => '<input name="%1$s" type="submit" id="%2$s" class="%3$s btn btn-primary" value="%4$s" />'
 		)
 	);
 	?>
