@@ -216,28 +216,28 @@ function create_subjects_hierarchical_taxonomy() {
 //first do the translations part for GUI
  
   $labels = array(
-    'name' => _x( 'Employee Types', 'taxonomy general name' ),
-    'singular_name' => _x( 'Employee Type', 'taxonomy singular name' ),
-    'search_items' =>  __( 'Search Employee Type' ),
-    'all_items' => __( 'All Employee Type' ),
-    'parent_item' => __( 'Parent Employee Type' ),
-    'parent_item_colon' => __( 'Parent Employee Type:' ),
-    'edit_item' => __( 'Edit Employee Type' ), 
-    'update_item' => __( 'Update Employee Type' ),
-    'add_new_item' => __( 'Add New Employee Type' ),
-    'new_item_name' => __( 'New Employee Type Name' ),
-    'menu_name' => __( 'Employee Types' ),
+    'name' => _x( 'Employment Types', 'taxonomy general name' ),
+    'singular_name' => _x( 'Employment Type', 'taxonomy singular name' ),
+    'search_items' =>  __( 'Search Employment Type' ),
+    'all_items' => __( 'All Employment Type' ),
+    'parent_item' => __( 'Parent Employment Type' ),
+    'parent_item_colon' => __( 'Parent Employment Type:' ),
+    'edit_item' => __( 'Edit Employment Type' ), 
+    'update_item' => __( 'Update Employment Type' ),
+    'add_new_item' => __( 'Add New Employment Type' ),
+    'new_item_name' => __( 'New Employment Type Name' ),
+    'menu_name' => __( 'Employment Types' ),
   );    
  
 // Now register the taxonomy
-  register_taxonomy('employee_types',array('post', 'manila', 'bulacan', 'pampanga'), array(
+  register_taxonomy('employment_types',array('post', 'manila', 'bulacan', 'pampanga'), array(
     'hierarchical' => true,
     'labels' => $labels,
     'show_ui' => true,
     'show_in_rest' => true,
     'show_admin_column' => true,
     'query_var' => true,
-    'rewrite' => array( 'slug' => 'employee_type' ),
+    'rewrite' => array( 'slug' => 'employment_type' ),
   ));
 
   // Bulacan Cities Taxonomy
