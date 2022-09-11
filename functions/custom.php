@@ -9,7 +9,7 @@ function count_province_post($post_type_name){
 
 function get_employment_type(){
     // your taxonomy name
-$tax = 'employee_types';
+$tax = 'employment_types';
 
 // get the terms of taxonomy
 $terms = get_terms( $tax, $args = array(
