@@ -26,25 +26,43 @@ class cities_widget extends WP_Widget {
     // set heading to h3
     $args['before_title'] = "<h4>";
     $args['after_title'] = "</h4>";
-    if ( ! empty( $title ) )
-    echo $args['before_title'] . $title . $args['after_title'];
 
     // get the terms of taxonomy
     $tax_data = get_query_var('taxonomy');
-    $terms = get_terms([
-        'taxonomy' => $tax_data,
-        'hide_empty' => false,
-    ]);
-    echo "<ul>";
-    if (is_single() || in_array($tax_data, array('bulacan_cities', 'pampanga_cities'))){
+    $cities = array(
+        'bulacan-cities',
+        'pampanga-cities'
+    );
+
+
+
+    
+
+    if (is_single() || in_array($tax_data, $cities)){
+        if ( ! empty( $title ) )
+        echo $args['before_title'] . $title . $args['after_title'];
+        $post_type = get_post_type( get_the_ID() );
+        if (is_single()){
+            $terms = get_terms([
+                'taxonomy' => ''. $post_type .'-cities',
+                'hide_empty' => false,
+            ]);
+        } else {
+            $terms = get_terms([
+                'taxonomy' => $tax_data,
+                'hide_empty' => false,
+            ]);
+        }
+        echo "<ul>";
         foreach ($terms as $term){
             $term_link = get_term_link( $term );
             if( $term->count > 0 )
                 // display link to term archive
                 echo '<li><a href="' . esc_url( $term_link ) . '">' . $term->name .'</a></li>';
         }
+        echo "</ul>";
     }
-    echo "</ul>";
+    
     
     echo $args['after_widget'];
     }

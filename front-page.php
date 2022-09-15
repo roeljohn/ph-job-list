@@ -19,14 +19,14 @@ get_header(); ?>
 <div class="row row-cols-1 row-cols-md-3 g-4">
     
     <?php
-$post_types = get_post_types( array( 'public' => true ), 'names', 'and' );
-// remove attachment from the list
-unset( $post_types['attachment'] );
-unset( $post_types['post'] );
-unset( $post_types['page'] );
-foreach ( $post_types  as $post_type ) {
-    get_template_part( 'template-parts/content/content-province', '', $post_type);
-}
+        $post_types = get_post_types( array( 'public' => true ), 'names', 'and' );
+        // remove attachment from the list
+        unset( $post_types['attachment'] );
+        unset( $post_types['post'] );
+        unset( $post_types['page'] );
+        foreach ( $post_types  as $post_type ) {
+            get_template_part( 'template-parts/content/content-province', '', $post_type);
+        }
     ?>
 </div>
 

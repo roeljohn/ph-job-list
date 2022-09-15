@@ -7,6 +7,7 @@ require_once( __DIR__ . '/functions/global.php');
 require_once( __DIR__ . '/functions/custom.php');
 require_once( __DIR__ . '/functions/employment_type.php');
 require_once( __DIR__ . '/functions/cities.php');
+require_once( __DIR__ . '/functions/widget/provinces.php');
 
 add_action( 'after_setup_theme', 'register_my_menu' );
 
