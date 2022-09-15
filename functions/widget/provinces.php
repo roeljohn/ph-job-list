@@ -26,12 +26,24 @@ class provinces_widget extends WP_Widget {
     // set heading to h3
     $args['before_title'] = "<h4>";
     $args['after_title'] = "</h4>";
+    $cities = array(
+        'bulacan-cities',
+        'pampanga-cities'
+    );
     if ( ! empty( $title ) )
     echo $args['before_title'] . $title . $args['after_title'];
      
     // This is where you run the code and display the output
-
-
+    $post_types = get_post_types( array( 'public' => true ), 'names', 'and' );
+    // remove attachment from the list
+    unset( $post_types['attachment'] );
+    unset( $post_types['post'] );
+    unset( $post_types['page'] );
+    echo "<ul>";
+    foreach ( $post_types  as $post_type ) {
+        echo '<li><a href="' . get_post_type_archive_link( $post_type ) . '">' . $post_type .'</a></li>';
+    }
+    echo "</ul>";
     echo $args['after_widget'];
     }
      

@@ -34,10 +34,6 @@ class cities_widget extends WP_Widget {
         'pampanga-cities'
     );
 
-
-
-    
-
     if (is_single() || in_array($tax_data, $cities)){
         if ( ! empty( $title ) )
         echo $args['before_title'] . $title . $args['after_title'];
