@@ -1,13 +1,9 @@
-<?php get_header(); ?>
-
-<div id="content" class="narrowcolumn">
-
-<!-- This sets the $curauth variable -->
-
-    <?php
+<?php 
+    get_header(); 
     $curauth = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : get_userdata(intval($author));
-    ?>
-    <?php var_dump($curauth); ?>
+?>
+<div class="row g-5">
+  <div class="col-md-8">
     <h2>About: <?php echo $curauth->nickname; ?></h2>
     <dl>
         <dt>Website</dt>
@@ -15,27 +11,22 @@
         <dt>Profile</dt>
         <dd><?php echo $curauth->user_description; ?></dd>
     </dl>
-
-    <h2>Posts by <?php echo $curauth->nickname; ?>:</h2>
-
-    <ul>
-<!-- The Loop -->
-
-    <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-        <li>
-            <a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link: <?php the_title(); ?>">
-            <?php the_title(); ?></a>,
-            <?php the_time('d M Y'); ?> in <?php the_category('&');?>
-        </li>
-
-    <?php endwhile; else: ?>
-        <p><?php _e('No posts by this author.'); ?></p>
-
+    <?php the_archive_title( '<h1 class="page-title">', '</h1>' ); ?>
+    <?php if ( have_posts() ) : ?>
+      <div class="list-group mb-3">
+      <?php while ( have_posts() ) : the_post(); ?>
+      <?php get_template_part( 'template-parts/sections/part', 'list', null ); ?>
+      <?php endwhile; ?>
+      </div>
+      <!-- end of the loop -->
+      <?php wpbeginner_numeric_posts_nav(); ?>
+      <!-- pagination here -->
+      <?php wp_reset_postdata(); ?>
+    <?php else : ?>
+      <p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
     <?php endif; ?>
-
-<!-- End Loop -->
-
-    </ul>
+  </div>
+  <?php get_sidebar(); ?>
 </div>
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>
+
