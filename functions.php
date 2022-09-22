@@ -499,3 +499,39 @@ function wpbeginner_numeric_posts_nav() {
     echo '</ul></div>' . "\n";
   
 }
+add_action( 'admin_post_add_foobar', 'prefix_admin_add_foobar' );
+
+//this next action version allows users not logged in to submit requests
+//if you want to have both logged in and not logged in users submitting, you have to add both actions!
+add_action( 'admin_post_nopriv_add_foobar', 'prefix_admin_add_foobar' );
+
+function prefix_admin_add_foobar() {
+    status_header(200);
+    // Gather post data.
+    $my_post = array(
+      'post_title'    => 'My post',
+      'post_content'  => 'This is my post.',
+      'post_status'   => 'publish',
+      'post_author'   => 1
+    );
+
+    // Insert the post into the database.
+    $post_id = wp_insert_post( $my_post );
+    if(!is_wp_error($post_id)){
+      //the post is valid
+      wp_redirect( home_url('?message=success') ); exit;
+    }else{
+      //there was an error in the post insertion, 
+      echo $post_id->get_error_message();
+    }
+
+}
+
+add_action( 'init', 'process_post' );
+
+function process_post() {
+  if($_GET['message'] == 'success'){ 
+    //display your message 
+    echo 'Success';
+  }
+}
