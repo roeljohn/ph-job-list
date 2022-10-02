@@ -507,7 +507,7 @@ add_action( 'admin_post_nopriv_add_foobar', 'prefix_admin_add_foobar' );
 
 function prefix_admin_add_foobar() {
     
-    if( ! is_user_logged_in() ){ wp_redirect( home_url() ); exit;}
+    if( ! is_user_logged_in() ){ wp_redirect( home_url('') ); exit;}
     // Do some minor form validation to make sure there is content
 
     if (isset ($_POST['title'])) {

@@ -21,6 +21,6 @@
 <p><label for="post_tags">Tags:</label>
 <input type="text" value="" tabindex="5" size="16" name="post_tags" id="post_tags" /></p>
 <p align="right"><input type="submit" value="Publish" tabindex="6" id="submit" name="submit" /></p>
-
+<?php wp_nonce_field( 'add-post-nonce', 'add_post_nonce' ); ?>
 </form>
 </div>
