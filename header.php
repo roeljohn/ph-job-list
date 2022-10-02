@@ -24,27 +24,38 @@
       </svg>
       <span class="fs-4">Job List</span>
     </a>
-      <?php $defaults = array(
-    'theme_location' => 'primary',
-    'menu'            => 'primary',
-    'container'       => '',
-    'container_class' => '',
-    'container_id'    => '',
-    'menu_class'      => 'nav nav-pills',
-    'menu_id'         => '',
-    'list_item_class'  => 'nav-item',
-    'link_class'   => 'nav-link',
-    'echo'            => true,
-    'fallback_cb'     => 'wp_page_menu',
-    'before'          => '',
-    'after'           => '',
-    'link_before'     => '',
-    'link_after'      => '',
-    'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-    'depth'           => 0,
-    'walker'          => ''
-);
-wp_nav_menu( $defaults );
-?>
+      <?php 
+        /** Need to improve */
+        $menu = 'primary';
+        if( is_user_logged_in() ) {
+          $user = wp_get_current_user();
+          $role = $user->roles[0];
+
+          if ($role === 'employer' || $role === 'administrator'){
+            $menu = 'Employer Menu';
+          }
+        } 
+        $defaults = array(
+            'theme_location' => $menu,
+            'menu'            => $menu,
+            'container'       => '',
+            'container_class' => '',
+            'container_id'    => '',
+            'menu_class'      => 'nav nav-pills',
+            'menu_id'         => '',
+            'list_item_class'  => 'nav-item',
+            'link_class'   => 'nav-link',
+            'echo'            => true,
+            'fallback_cb'     => 'wp_page_menu',
+            'before'          => '',
+            'after'           => '',
+            'link_before'     => '',
+            'link_after'      => '',
+            'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+            'depth'           => 0,
+            'walker'          => ''
+        );
+        wp_nav_menu( $defaults );
+      ?>
   </header>
   <main>

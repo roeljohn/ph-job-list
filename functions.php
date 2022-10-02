@@ -506,17 +506,35 @@ add_action( 'admin_post_add_foobar', 'prefix_admin_add_foobar' );
 add_action( 'admin_post_nopriv_add_foobar', 'prefix_admin_add_foobar' );
 
 function prefix_admin_add_foobar() {
-    status_header(200);
-    // Gather post data.
-    $my_post = array(
-      'post_title'    => 'My post',
-      'post_content'  => 'This is my post.',
-      'post_status'   => 'publish',
-      'post_author'   => 1
+    
+    if( ! is_user_logged_in() ){ wp_redirect( home_url('') ); exit;}
+    // Do some minor form validation to make sure there is content
+
+    if (isset ($_POST['title'])) {
+        $title =  $_POST['title'];
+    } else {
+        echo 'Please enter a  title';
+    }
+    if (isset ($_POST['description'])) {
+        $description = $_POST['description'];
+    } else {
+        echo 'Please enter the content';
+    }
+    $tags = $_POST['post_tags'];
+
+    // Add the content of the form to $post as an array
+    $new_post = array(
+        'post_title'    => $title,
+        'post_content'  => $description,
+        'post_category' => array($_POST['cat']),  // Usable for custom taxonomies too
+        'tags_input'    => array($tags),
+        'post_status'   => 'publish',           // Choose: publish, preview, future, draft, etc.
+        'post_type' => 'post'  //'post',page' or use a custom post type if you want to
     );
 
+
     // Insert the post into the database.
-    $post_id = wp_insert_post( $my_post );
+    $post_id = wp_insert_post( $new_post );
     if(!is_wp_error($post_id)){
       //the post is valid
       wp_redirect( home_url('?message=success') ); exit;
