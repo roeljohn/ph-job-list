@@ -17,7 +17,7 @@
 get_header(); ?>
 <?php get_search_form(); ?>
 <div class="row row-cols-1 row-cols-md-3 g-4">
-<form action="http://localhost/ph-job-list/wp-admin/admin-post.php" method="post">
+<form action="<?php echo admin_url( 'admin-post.php' ); ?>" method="post">
 <input type="hidden" name="action" value="add_foobar">
 <input type="hidden" name="data" value="foobarid">
 <input type="submit" value="Submit">
