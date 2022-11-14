@@ -8,6 +8,7 @@ require_once( __DIR__ . '/functions/custom.php');
 require_once( __DIR__ . '/functions/employment_type.php');
 require_once( __DIR__ . '/functions/cities.php');
 require_once( __DIR__ . '/functions/widget/provinces.php');
+require_once( __DIR__ . '/functions/user/add_new.php');
 
 add_action( 'after_setup_theme', 'register_my_menu' );
 
@@ -552,4 +553,16 @@ function process_post() {
     //display your message 
     echo 'Success';
   }
+}
+
+add_action('init','wpse46108_register_param');
+function wpse46108_register_param() { 
+    global $wp; 
+    $wp->add_query_var('error'); 
+}
+
+function check_register_user_error(){
+  echo $_GET['error'];
+  global $wp_query;
+  var_dump($wp_query->query_vars);
 }
