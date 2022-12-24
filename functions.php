@@ -555,14 +555,9 @@ function process_post() {
   }
 }
 
-add_action('init','wpse46108_register_param');
-function wpse46108_register_param() { 
+add_action('init','add_get_val');
+function add_get_val() { 
     global $wp; 
-    $wp->add_query_var('error'); 
+    $wp->add_query_var('register_failed');
 }
 
-function check_register_user_error(){
-  echo $_GET['error'];
-  global $wp_query;
-  var_dump($wp_query->query_vars);
-}
