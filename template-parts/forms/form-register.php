@@ -1,12 +1,14 @@
 <form class="row g-3" action="<?php echo admin_url( 'admin-post.php' ); ?>" method="post">
+
 <div class="alert alert-danger" role="alert">
-  A simple danger alert—check it out!
+<?php if ( get_query_var('register_failed') ) {
+    echo get_query_var('register_failed');
+} ?>
 </div>
 <div class="alert alert-danger alert-dismissible fade show" role="alert">
   <strong>Holy guacamole!</strong> You should check in on some of those fields below.
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>    
-<?php return  check_register_user_error(); ?>
 <input type="hidden" name="action" value="add_new_user908">
   <div class="col-md-6">
     <label for="inputFirstName" class="form-label">First Name</label>
